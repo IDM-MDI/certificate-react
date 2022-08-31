@@ -1,0 +1,82 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    background: #0F242D;
+}
+
+*::-webkit-scrollbar {
+    width: 12px;               /* width of the entire scrollbar */
+}
+
+*::-webkit-scrollbar-track {
+    background: #0A1E27;        /* color of the tracking area */
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #318B37;    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+    border: 3px solid #0A1E27;  /* creates padding around scroll thumb */
+}
+
+
+.groupText {
+    display: flex;
+    align-items: flex-end;
+    gap: 100px;
+}
+
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 135px;
+}
+
+.header {
+    width: 1846px;
+    display: flex;
+    gap: 500px;
+    align-items: flex-end;
+}
+
+.flexCenter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flexColumn {
+    flex-direction: column;
+}
+
+
+.footer {
+    margin-left: 37px;
+    margin-right: 37px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 195px;
+
+    width: 1846px;
+    height: 127px;
+    background: #318B37;
+    border-radius: 8px 8px 0px 0px;
+}
+
+.footerIcons {
+    display: flex;
+    gap: 115px;
+}
+
+.cursorPointer:hover {
+    cursor: pointer;
+}

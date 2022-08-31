@@ -1,0 +1,200 @@
+.listTitle {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.titleContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.titleSort {
+    display: flex;
+    gap: 100px;
+}
+
+.certificateItems {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 105px;
+    column-gap: 150px;
+    width: 1683px;
+}
+
+.nextLine {
+    height: 0;
+    width: 100%;
+}
+
+.listBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 110px;
+}
+
+.certificateBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+
+    width: 216px;
+    height: 232px;
+    background: #0A1E27;
+    border-radius: 20px;
+    transition-duration: 700ms;
+}
+
+.certificateBlock:hover {
+    transition-duration: 500ms;
+    transform: scale(1.2);
+}
+
+
+.certificateItemImage {
+    object-fit: cover;
+    object-position: 50%;
+    background-color: #FCF9F9;
+    width: 216px;
+    height: 131px;
+    border-radius: 20px 20px 0 0;
+}
+
+.certificateItemImage:hover {
+    cursor: pointer;
+}
+
+.certificateItemName {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.certificateItemOrder {
+    display: flex;
+    align-items: flex-end;
+    gap: 17px;
+}
+.certificateItemCart {
+    width: 39px;
+    height: 34px;
+    transform: scaleX(-1);
+}
+
+.certificateItemCart:hover {
+    cursor: pointer;
+}
+
+.tagItems {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 129px;
+    column-gap: 126px;
+    width: 1683px;
+}
+
+.paginationBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.paginationSide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 452px;
+}
+
+.tagBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 17px;
+
+    width: 477px;
+    height: 253px;
+
+    background: #0A1E27;
+    box-shadow: 29px 22px 19px rgba(33, 38, 46, 0.74);
+    border-radius: 20px;
+    transition-duration: 700ms;
+}
+
+.tagBlock:hover {
+    cursor: pointer;
+    transition-duration: 500ms;
+    transform: scale(1.2);
+}
+.tagImage {
+    object-fit: cover;
+    object-position: 50%;
+    width: 477px;
+    height: 196px;
+
+    background-color: #FCF9F9;
+    border-radius: 20px 20px 0 0;
+}
+
+.emptyArrow {
+    width: 45px;
+    height: 75px;
+}
+
+.orderBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.orderFullBlock {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 200px;
+}
+
+.orderInfo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 150px;
+}
+
+.orderImage {
+    object-fit: cover;
+    object-position: 50%;
+
+    border-radius: 50%;
+    width: 162px;
+    height: 162px;
+    background-color: #FCF9F9;
+}
+
+.orderName {
+    width: 200px;
+    height: 81px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.orderPrice {
+    width: 250px;
+    height: 49px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.orderButtons {
+    display: flex;
+    gap: 150px;
+}

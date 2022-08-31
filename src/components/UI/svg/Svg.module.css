@@ -1,0 +1,54 @@
+.svgIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 11px;
+}
+
+.moonText{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-top: 25px;
+}
+
+.moon {
+    margin-top: 50px;
+    border-radius: 50%;
+    width: 138px;
+    height: 132px;
+    border: 1px solid #297334;
+    box-shadow: -1px 6px 50px 32px #297334;
+}
+
+.leftArrow {
+    transform: rotate(-180deg);
+}
+
+.rightArrow {
+}
+
+.upArrow {
+    transform: rotate(-90deg);
+}
+
+.downArrow {
+    transform: rotate(90deg);
+}
+
+.cursorPointer {
+    cursor: pointer;
+}
+
+.sort {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sortArrows {
+    display: flex;
+    gap: 10px;
+}

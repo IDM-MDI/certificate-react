@@ -1,0 +1,119 @@
+.topBlock {
+    display: flex;
+    flex-direction: column;
+
+    gap: 162px;
+
+    width: 1650px;
+    height: 683px;
+
+    background: #0A1E27;
+    border-radius: 20px;
+}
+
+.chosenBlock {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    gap: 162px;
+
+    width: 1650px;
+    height: 683px;
+
+    background: #0A1E27;
+    border-radius: 20px;
+}
+
+.topTitle {
+    text-align: center;
+    margin-top: 18px;
+}
+
+.tagTopItem {
+    display: flex;
+    flex-direction: column;
+    gap: 38px;
+
+
+
+    width: 805px;
+    height: 428px;
+
+    background: #318B37;
+    box-shadow: 29px 22px 19px rgba(33, 38, 46, 0.74);
+    border-radius: 20px;
+
+}
+
+.tagTopImg {
+    object-fit: cover;
+    object-position: 50%;
+    width: 805px;
+    height: 331px;
+
+    border-radius: 20px 20px 0 0;
+    background: #FCF9F9;
+}
+
+.tagTopText {
+    display: flex;
+    justify-content: center;
+}
+
+.activeTag {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    gap: 295px;
+}
+
+
+.accountBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.accountInfo {
+    display: flex;
+    gap: 10px;
+}
+
+.accountText {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    text-align: center;
+}
+
+.accountMenuBlock {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: none;
+}
+
+.accountMenuActive {
+    position: absolute;
+    margin-left: 30px;
+    margin-top: 55px;
+    background-color: #0A1E27;
+    width: 150px;
+    height: 110px;
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+}
+
+.cursorPointer:hover {
+    cursor: pointer;
+    user-select:none;
+}

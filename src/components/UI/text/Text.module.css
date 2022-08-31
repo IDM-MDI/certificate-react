@@ -1,0 +1,102 @@
+a:link {
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: none;
+}
+
+.signInUpBlock {
+    margin-top: 44px;
+    display: flex;
+    justify-content: center;
+    gap: 418px;
+}
+
+.flexCenter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flexColumn {
+    flex-direction: column;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.normal {
+    font-weight: normal;
+}
+
+.fontInit {
+    font-family: 'Montserrat', serif;
+    font-style: normal;
+}
+
+.underline1683 {
+    width: 1683px;
+    height: 0;
+}
+
+.underline88 {
+    width: 88px;
+    height: 0;
+}
+.underline159 {
+    width: 159px;
+    height: 0;
+}
+
+.underline62 {
+    width: 62px;
+    height: 0;
+}
+
+.underlineGreen {
+    border: 1px solid #297334;
+}
+.underlinePink {
+    border: 1px solid #F23A7A;
+}
+
+.f15 {
+    font-size: 15px;
+}
+
+.f20 {
+    font-size: 20px;
+}
+
+.f24 {
+    font-size: 24px;
+}
+
+.f32 {
+    font-size: 32px;
+}
+
+.f36 {
+    font-size: 36px;
+}
+
+.f64 {
+    font-size: 64px;
+}
+
+.green {
+    color: #318B37;
+}
+
+.white {
+    color: #FCF9F9;
+}
+
+.pink {
+    color: #F23A7A;
+}
+
+.cursorPointer:hover {
+    cursor: pointer;
+}

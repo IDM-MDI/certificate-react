@@ -1,0 +1,33 @@
+/* ----------------------------------------ABOUT PAGE---------------------------------- */
+.aboutBlock {
+    display: flex;
+    gap: 200px;
+
+    width: 1840px;
+    height: 636px;
+
+    background: #053829;
+    border-radius: 20px;
+}
+
+.aboutImage {
+    width: 636px;
+    height: 636px;
+
+    border-radius: 20px;
+}
+
+.aboutText {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    width: 822px;
+}
+
+.ordersPage {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}

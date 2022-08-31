@@ -1,0 +1,157 @@
+/* ------------------------------------POPUP---------------------------------- */
+.popup {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: none;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 5;
+}
+
+.popup.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popupContainer {
+
+}
+/* ------------------------------------CERTIFICATE BY ID---------------------------------- */
+
+.certificateByIdBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 90px;
+
+    box-sizing: border-box;
+
+    width: 1427px;
+    height: 850px;
+
+    background: #0A1E27;
+    border: 3px solid #318B37;
+    border-radius: 20px;
+
+    overflow: scroll;
+}
+
+.certificateByIdShopAndTagSize {
+    width: 250px;
+}
+
+.certificateByIdMainName {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    gap: 281px;
+}
+
+.certificateByIdOrder {
+    display: flex;
+    align-items: center;
+    gap: 124px;
+}
+
+.certificateByIdShopAndTagsAndDescription {
+    margin-left: 70px;
+    display: flex;
+    gap: 115px;
+}
+
+.certificateByIdShopAndTags {
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+}
+
+.certificateByIdShop {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+
+.certificateByIdTags {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+
+.certificateByIdDescription {
+    display: flex;
+    align-items: center;
+    text-align:center;
+    text-space: 15px;
+
+    width: 926px;
+    height: 357px;
+
+    background: #053829;
+    border-radius: 20px;
+}
+
+.certificateByIdImages {
+    margin-left: 70px;
+    display: flex;
+    gap: 50px;
+}
+
+.certificateByIdSmallImages {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+
+.certificateByIdSmallImage {
+    object-fit: cover;
+    object-position: 50%;
+    width: 333px;
+    height: 149px;
+
+    background-color: #FCF9F9;
+    border: 3px solid #297334;
+    border-radius: 20px;
+}
+
+.certificateByIdSmallImage:hover {
+    cursor: pointer;
+}
+
+.certificateByIdBigImage {
+    object-fit: cover;
+    object-position: 50%;
+    width: 926px;
+    height: 513px;
+
+    background-color: #FCF9F9;
+    border-radius: 20px;
+}
+
+/* ------------------------------------SIGN---------------------------------- */
+
+.signBlock {
+    display: flex;
+
+    align-items: center;
+    flex-direction: column;
+
+    gap: 65px;
+
+    box-sizing: border-box;
+    width: 813px;
+
+    background: #0A1E27;
+    border: 3px solid #318B37;
+    border-radius: 20px;
+}
+
+.signInBlock {
+    height: 800px;
+}
+.signUpBlock {
+    height: 593px;
+}
