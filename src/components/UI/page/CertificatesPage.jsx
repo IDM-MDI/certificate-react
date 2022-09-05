@@ -8,7 +8,8 @@ import cl from '../list/List.module.css'
 import Pagination from "../list/Pagination";
 import {fetchEntity} from "../API/FetchService";
 import Loader from "../loader/Loader";
-import CertificateTitle from "../list/CertificateTitle";
+import CertificateTitle from "../list/title/CertificateTitle";
+import {fetchPage, nextPage, prevPage} from "./PageService";
 
 const URL = 'http://localhost:8080/api/v1/gifts';
 const SIZE = 25;
@@ -22,41 +23,21 @@ const CertificatesPage = () => {
         sort : 'id',
         direction : 'asc'
     })
-    // const [pageNumber,setPageNumber] = useState(localStorage.getItem('certificatePage'))
-
-    // window.addEventListener("beforeunload", ()=>{
-    //     localStorage.setItem('certificatePage',pageNumber)
-    // });
 
     useEffect(()=> {
-        setLoading(true)
+        fetchPage(setLoading,MILLISECONDS,certificatePage)
+    },[param])
+
+    function certificatePage() {
         fetchEntity(
             URL,
             SIZE,
             param.pageNumber,
             param.sort,
             param.direction
-        )
-            .then(response => {
-                setData(response.data)
-            })
-        setTimeout(()=>{
-            setLoading(false)
-        },MILLISECONDS)
-    },[param])
-
-    function nextPage() {
-        setParam(param => ({
-            ...param,
-            pageNumber: param.pageNumber + 1
-        }));
-    }
-
-    function prevPage() {
-        setParam(param => ({
-            ...param,
-            pageNumber: param.pageNumber - 1
-        }));
+        ).then(response => {
+            setData(response.data)
+        })
     }
 
     return (
@@ -72,7 +53,16 @@ const CertificatesPage = () => {
                         <CertificateList data={data}/>
                 }
             </div>
-            <Pagination onClickNext={nextPage} onClickPrev={prevPage} request={data} param={param} setParam={setParam}/>
+            <Pagination
+                onClickNext={() => {
+                    nextPage(param,setParam)
+                }}
+                onClickPrev={()=> {
+                    prevPage(param,setParam)
+                }}
+                request={data}
+                param={param}
+                setParam={setParam}/>
         </div>
     );
 };

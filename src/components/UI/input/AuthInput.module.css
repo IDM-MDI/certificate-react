@@ -44,12 +44,13 @@ input::-webkit-inner-spin-button {
     margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
 
-.searchPagination {
+.search {
     text-align: center;
     border: 0;
     background-color: transparent;
     border-bottom: 2px solid #318B37;
     color: #FCF9F9;
     padding: .25rem 0;
+    font-size: 24px;
 }
 

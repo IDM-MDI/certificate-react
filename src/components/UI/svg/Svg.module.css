@@ -52,3 +52,10 @@
     display: flex;
     gap: 10px;
 }
+
+.search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+}

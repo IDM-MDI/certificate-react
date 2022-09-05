@@ -1,8 +1,8 @@
 import React from 'react';
-import classes from "./List.module.css";
-import Text from "../text/Text";
-import UnderLine from "../text/UnderLine";
-import Sort from "../svg/Sort";
+import classes from "../List.module.css";
+import Text from "../../text/Text";
+import UnderLine from "../../text/UnderLine";
+import Sort from "../../svg/Sort";
 
 const CertificateTitle = ({param,setParam}) => {
     return (

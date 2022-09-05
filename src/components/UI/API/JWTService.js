@@ -8,15 +8,15 @@ export async function initJWT() {
     const init = JSON.parse(localStorage.getItem('auth'));
     if(init === null) return null;
 
-    const result = await isJWTNotExpired(init.jwt);
+    const result = await isJWTNotExpired(init.username,init.jwt);
     return result ? init : null;
 }
 
-export async function isJWTNotExpired(jwt) {
+export async function isJWTNotExpired(username,jwt) {
     if (!isJWTValid(jwt)) {
         return false;
     }
-    let response = await getResponseByJWT(jwt);
+    let response = await getResponseByJWT(username,jwt);
     return response !== null && response.data === true;
 }
 
@@ -24,11 +24,12 @@ export async function isJWTValidByContext(context) {
     if(!isContextValid(context)) {
         return false;
     }
-    return await isJWTNotExpired(context.auth.jwt);
+    return await isJWTNotExpired(context.auth.username,context.auth.jwt);
 }
 
-export async function getResponseByJWT(jwt) {
-    return await axios.get(JWT_URL, {
+export async function getResponseByJWT(username,jwt) {
+    const usernameParam = '?username=' + username
+    return await axios.get(JWT_URL + usernameParam, {
         headers: {
             'Authorization': 'Bearer ' + jwt
         }

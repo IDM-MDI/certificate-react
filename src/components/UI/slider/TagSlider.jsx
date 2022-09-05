@@ -15,8 +15,6 @@ const TagSlider = ({data,...props}) => {
         centerPadding: 350,
         slidesToShow: 1,
         speed: 500,
-        // nextArrow: <div className={classes.arrowSlider}><Arrow direction={'right'} height={"75px"} width={"45px"}/></div>,
-        // prevArrow: <div className={classes.arrowSlider}><Arrow direction={'left'} height={"75px"} width={"45px"}/></div>
         arrows: false
     };
 

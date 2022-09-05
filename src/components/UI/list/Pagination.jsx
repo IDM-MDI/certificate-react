@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import classes from "./List.module.css";
 import Arrow from "../svg/Arrow";
 import Text from "../text/Text";
@@ -22,7 +22,7 @@ const Pagination = ({request, param,setParam,onClickPrev,onClickNext,...props}) 
                 <Text fSize={32}>{param.pageNumber + 1}</Text>
                 {nextArrow}
             </div>
-            <PaginationSearchInput setPage={setParam}/>
+            <PaginationSearchInput setInput={setParam}/>
         </div>
     );
 };

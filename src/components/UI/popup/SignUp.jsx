@@ -15,7 +15,7 @@ const SignUp = ({signIn,setSignIn,...props}) => {
     const [password,setPassword] = useState('')
 
     function validate(){
-        return validateUsername(username) === 'valid' && validatePassword(password) === 'valid';
+        return validateUsername(username) === 'Valid' && validatePassword(password) === 'Valid';
     }
     async function registration() {
         const valid = validate();
@@ -23,7 +23,7 @@ const SignUp = ({signIn,setSignIn,...props}) => {
             await axios.post(URL, {
                 "username": username,
                 "password": password
-            }).then((response) => {
+            }).then( response => {
                 setSignIn(true)
             });
         }

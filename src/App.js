@@ -21,9 +21,10 @@ function App() {
     useMemo(() => {
         initJWT()
             .then(r => {
-                setBusy(false)
                 setAuth(r)
-            })
+            }).finally(()=> {
+            setBusy(false)
+        })
     },[])
 
 

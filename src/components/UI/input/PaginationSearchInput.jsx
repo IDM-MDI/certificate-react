@@ -1,24 +1,23 @@
 import React, {useState} from 'react';
-import classes from './AuthInput.module.css'
+import SearchInput from "./SearchInput";
 
-const PaginationSearchInput = ({setPage,...props}) => {
-    const [input,setInput] = useState(0)
+const PaginationSearchInput = ({setInput,type,...props}) => {
+    const [searchInput,setSearchInput] = useState(0)
 
     return (
-        <input
-            className={classes.searchPagination}
-            type="number"
+        <SearchInput
+            type={'Number'}
             onChange={event => {
-                setInput(event.target.value);
+                setSearchInput(event.target.value);
             }}
             onKeyDown={event => {
                 if(event.key === 'Enter') {
-                    setPage(param => ({
+                    setInput(param => ({
                         ...param,
-                        pageNumber: input - 1
+                        pageNumber: searchInput - 1
                     }));
                 }
-        }}/>
+            }}/>
     );
 };
 

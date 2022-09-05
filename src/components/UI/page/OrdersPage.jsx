@@ -1,13 +1,14 @@
 import React, {useContext, useEffect, useLayoutEffect, useState} from 'react';
 import OrderList from "../list/OrderList";
 import Pagination from "../list/Pagination";
-import OrderTitle from "../list/OrderTitle";
+import OrderTitle from "../list/title/OrderTitle";
 import {fetchOrder} from "../API/FetchService";
 import {Context} from "../context/context";
 import Loader from "../loader/Loader";
 import {useNavigate} from "react-router-dom";
 import {isJWTValidByContext} from "../API/JWTService";
 import classes from './Page.module.css'
+import {nextPage, prevPage} from "./PageService";
 
 const URL = 'http://localhost:8080/api/v1/order';
 const SIZE = 6;
@@ -16,7 +17,7 @@ const MILLISECONDS = 550;
 const OrdersPage = () => {
     const context = useContext(Context);
     const navigate = useNavigate()
-    const [isAuth,setAuth] = useState(undefined)
+    const [auth,setAuth] = useState(undefined)
     const [data,setData] = useState(null);
     const [isLoading,setLoading] = useState(true)
     const [param,setParam] = useState({
@@ -27,11 +28,15 @@ const OrdersPage = () => {
 
     useEffect(()=> {
         setLoading(true)
-        if(isAuth === undefined) {
+        if(auth === undefined) {
             isJWTValidByContext(context)
                 .then(r => {
-                    setAuth(r)
-                    r ? changeData() : navigate(`error`)
+                    if (r === true) {
+                        setAuth(context.auth)
+                        changeData()
+                    } else {
+                        navigate(`error`)
+                    }
                 })
         }
         else {
@@ -41,21 +46,6 @@ const OrdersPage = () => {
             setLoading(false)
         },MILLISECONDS)
     },[param])
-
-
-    function nextPage() {
-        setParam(param => ({
-            ...param,
-            pageNumber: param.pageNumber + 1
-        }));
-    }
-
-    function prevPage() {
-        setParam(param => ({
-            ...param,
-            pageNumber: param.pageNumber - 1
-        }));
-    }
 
     function changeData() {
         fetchOrder(
@@ -73,14 +63,23 @@ const OrdersPage = () => {
 
     return (
         <div className={classes.ordersPage}>
-            <OrderTitle />
+            <OrderTitle param={param} setParam={setParam}/>
             {
                 isLoading ?
                     <Loader />
                     :
-                    <OrderList data={data}></OrderList>
+                    <OrderList data={data} />
             }
-            <Pagination onClickNext={nextPage} onClickPrev={prevPage} request={data} setParam={setParam} param={param}/>
+            <Pagination
+                onClickNext={() => {
+                    nextPage(param,setParam)
+                }}
+                onClickPrev={() => {
+                    prevPage(param,setParam)
+                }}
+                request={data}
+                setParam={setParam}
+                param={param}/>
         </div>
     );
 };

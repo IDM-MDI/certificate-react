@@ -7,6 +7,7 @@ import {useParams} from "react-router-dom";
 import {fetchEntity} from "../API/FetchService";
 import Loader from "../loader/Loader";
 import CertificateByID from "../popup/CertificateByID";
+import {fetchPage, nextPage, prevPage} from "./PageService";
 
 const CERTIFICATE_URL = 'http://localhost:8080/api/v1/gifts/tag/';
 const TAG_BY_ID_URL = 'http://localhost:8080/api/v1/tags/';
@@ -25,39 +26,22 @@ const CertificatesByTag = () => {
     })
 
     useEffect(()=> {
-        setLoading(true)
+        fetchPage(setLoading,MILLISECONDS,byTagPage)
+    },[param])
 
+    function byTagPage() {
         fetchEntity(
             CERTIFICATE_URL + params.id,
             SIZE,
             param.pageNumber,
             param.sort,
             param.direction
-        )
-            .then(response => {
-                setData(response.data)
-            })
-        fetchEntity(TAG_BY_ID_URL + params.id)
-            .then(response => {
-                setTagByID(response.data)
-            })
-        setTimeout(()=>{
-            setLoading(false)
-        },MILLISECONDS)
-    },[param])
-
-    function nextPage() {
-        setParam(param => ({
-            ...param,
-            pageNumber: param.pageNumber + 1
-        }));
-    }
-
-    function prevPage() {
-        setParam(param => ({
-            ...param,
-            pageNumber: param.pageNumber - 1
-        }));
+        ).then(response => {
+            setData(response.data)
+        })
+        fetchEntity(TAG_BY_ID_URL + params.id).then(response => {
+            setTagByID(response.data)
+        })
     }
 
     return (
@@ -70,7 +54,16 @@ const CertificatesByTag = () => {
                         <ChosenTag data={tagByID !== null ? tagByID.content[0] : null}/>
                         <CertificateByID />
                         <CertificateList data={data}/>
-                        <Pagination onClickNext={nextPage} onClickPrev={prevPage} request={data} param={param} setParam={setParam}/>
+                        <Pagination
+                            onClickNext={() => {
+                                nextPage(param,setParam)
+                            }}
+                            onClickPrev={() => {
+                                prevPage(param,setParam)
+                            }}
+                            request={data}
+                            param={param}
+                            setParam={setParam}/>
                     </div>
             }
         </div>
