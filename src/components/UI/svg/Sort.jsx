@@ -5,6 +5,7 @@ import ArrowUpGreen from './img/arrowUpGreen.svg'
 import ArrowUpPink from './img/arrowUpPink.svg'
 import classes from './Svg.module.css'
 import Text from "../text/Text";
+import classnames from "classnames";
 
 const DEFAULT_SORT = 'id';
 const ASC = 'asc';

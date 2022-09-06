@@ -68,7 +68,7 @@ const OrdersPage = () => {
                 isLoading ?
                     <Loader />
                     :
-                    <OrderList data={data} />
+                    <OrderList data={data} jwt={context.auth.jwt}/>
             }
             <Pagination
                 onClickNext={() => {

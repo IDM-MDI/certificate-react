@@ -1,9 +1,8 @@
-import React,{useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Order from "./Order";
 import Text from "../text/Text";
-import classes from './List.module.css'
 
-const OrderList = ({data,...props}) => {
+const OrderList = ({data,jwt,...props}) => {
     const [listOrder,setOrders] = useState(<Text fSize={36} color={'pink'}>There are nothing find</Text>)
 
     useEffect(()=> {
@@ -11,13 +10,13 @@ const OrderList = ({data,...props}) => {
     },[data])
 
     function getListByData() {
+        let result = [];
         if(data === null) {
             return;
         }
 
-        let result = [];
         for (let i = 0; i < data.content.length; i++) {
-            result[i] = <Order key={data.content[i].id}>{data.content[i]}</Order>
+            result[i] = <Order key={data.content[i].id} jwt={jwt}>{data.content[i]}</Order>
         }
         setOrders(result);
     }

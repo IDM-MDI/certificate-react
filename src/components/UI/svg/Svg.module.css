@@ -38,14 +38,18 @@
     transform: rotate(90deg);
 }
 
-.cursorPointer {
-    cursor: pointer;
-}
-
 .sort {
     display: flex;
     align-items: center;
     gap: 10px;
+}
+
+.sort:hover {
+    cursor: pointer;
+}
+
+.svg:hover {
+    cursor: pointer;
 }
 
 .sortArrows {

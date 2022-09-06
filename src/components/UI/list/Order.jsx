@@ -4,15 +4,23 @@ import classes from './List.module.css'
 import Text from "../text/Text";
 import BuyDeleteButton from "../button/BuyDeleteButton";
 import DefaultImage from './img/istockphoto-1335934273-640x640.jpg'
+import axios from "axios";
 
 const IMAGE_URL = "http://localhost:8080/api/v1/gifts/";
+
+const URL = 'http://localhost:8080/api/v1/order/';
+const BOUGHT = 'BOUGHT';
+
 
 function getImage(certificate) {
     return certificate.haveMainImage? IMAGE_URL + certificate.id + "/img?name=main" : DefaultImage;
 }
 
-const Order = ({children,...props}) => {
-    const image = getImage(children.gift)
+const Order = ({children,jwt,...props}) => {
+    console.log(children)
+    const id = children.id;
+    const image = getImage(children.gift);
+
     return (
         <div className={classes.orderBlock}>
             <div className={classes.orderFullBlock}>
@@ -26,8 +34,38 @@ const Order = ({children,...props}) => {
                     </div>
                 </div>
                 <div className={classes.orderButtons}>
-                    <BuyDeleteButton color={'pink'}>Delete</BuyDeleteButton>
-                    <BuyDeleteButton color={'green'}>Buy</BuyDeleteButton>
+                    <BuyDeleteButton
+                        color={'pink'}
+                        onClick={ async () => {
+                            await axios.delete(URL + id,{
+                                headers: {
+                                    'Authorization': 'Bearer ' + jwt
+                                }
+                            })
+                        }}>
+                        Delete
+                    </BuyDeleteButton>
+                    <BuyDeleteButton
+                        color={'green'}
+                        onClick={ async () => {
+                            children.status = BOUGHT;
+                            await axios.patch(URL + id,{
+                                'id' : id,
+                                'gift' : children.gift,
+                                'price' : children.price,
+                                'purchaseTime' : children.purchaseTime,
+                                'status' : children.status,
+                                'userId' : children.userId,
+                                'giftId' : children.giftId
+                            },{
+                                headers: {
+                                    'Authorization': 'Bearer ' + jwt
+                                }
+                            })
+                        }}
+                    >
+                        Buy
+                    </BuyDeleteButton>
                 </div>
             </div>
             <UnderLine width={'100%'} color={'green'}/>
