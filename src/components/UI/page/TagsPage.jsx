@@ -6,6 +6,7 @@ import TagList from "../list/TagList";
 import Loader from "../loader/Loader";
 import {fetchEntity, fetchSearchByName} from "../API/FetchService";
 import {fetchPage, nextPage, prevPage} from "./PageService";
+import TagAdd from "../popup/TagAdd";
 
 const URL = 'http://localhost:8080/api/v1/tags'
 const SEARCH_URL = 'http://localhost:8080/api/v1/tags/search'
@@ -55,6 +56,7 @@ const TagsPage = () => {
                     :
                     <TagList data={data}></TagList>
             }
+            <TagAdd />
             <Pagination
                 onClickNext={() => {
                     nextPage(param,setParam)

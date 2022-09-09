@@ -1,15 +1,23 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import classes from "../List.module.css";
 import Text from "../../text/Text";
 import UnderLine from "../../text/UnderLine";
 import Sort from "../../svg/Sort";
 import Search from "../../svg/Search";
+import Add from "../../svg/Add";
+import {Context} from "../../context/context";
 
 const TagTitle = ({param,setParam,setSearch,...props}) => {
+    const context = useContext(Context);
+    const[isAddTagVisible,setAddTagVisible] = [context.isAddTagVisible,context.setAddTagVisible]
+
     return (
         <div className={classes.listTitle}>
             <div className={classes.titleContent}>
-                <Text fSize={36}>Tags</Text>
+                <div className={classes.titleName}>
+                    <Text fSize={36}>Tags</Text>
+                    <Add onClick={() => setAddTagVisible(true)}/>
+                </div>
                 <div className={classes.titleSort}>
                     <Sort param={param} setParam={setParam}
                     >

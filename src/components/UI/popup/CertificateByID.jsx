@@ -6,6 +6,7 @@ import {Context} from "../context/context";
 import BuyDeleteButton from "../button/BuyDeleteButton";
 import {addCertificateToOrder} from "../API/OrderService";
 import Edit from "../svg/Edit";
+import {isPopupActive} from "../validator/PopupValidator";
 
 const CertificateById = (props) => {
     const context = useContext(Context);
@@ -40,14 +41,8 @@ const CertificateById = (props) => {
             certificateByID._links.self.href + '/img?name=third'
     }
 
-    let popup = classes.popup;
-    let cl = popup;
-    if(isCertificateByIDVisible) {
-        cl = [popup,classes.active].join(' ');
-    }
-
     return (
-        <div className={cl} onClick={() => setCertificateByIDVisible(false)}>
+        <div className={isPopupActive(isCertificateByIDVisible)} onClick={() => setCertificateByIDVisible(false)}>
             <div className={classes.certificateByIdBlock} onClick={(e) => e.stopPropagation()}>
                 <Title context={context}>{certificateByID}</Title>
                 <Content>{certificateByID}</Content>

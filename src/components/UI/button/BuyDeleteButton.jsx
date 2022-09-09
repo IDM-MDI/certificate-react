@@ -8,10 +8,8 @@ function colorValidator(color) {
 }
 
 const BuyDeleteButton = ({color,onClick,children,...props}) => {
-    color = colorValidator(color)
-
     return (
-        <div onClick={onClick} className={classnames(color,classes.buyDeleteButton)}>
+        <div onClick={onClick} className={classnames(colorValidator(color),classes.buyDeleteButton)}>
             <Text>{children}</Text>
         </div>
     );

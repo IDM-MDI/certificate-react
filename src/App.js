@@ -17,6 +17,7 @@ function App() {
     const[isAccountMenuVisible,setAccountMenuVisible] = useState(false);
     const[isCertificateByIDVisible,setCertificateByIDVisible] = useState(false);
     const[certificateByID,setCertificateByID] = useState(null);
+    const[isAddTagVisible,setAddTagVisible] = useState(false);
 
     useMemo(() => {
         initJWT()
@@ -35,16 +36,12 @@ function App() {
                     <Loader />
                     :
                     <Context.Provider value={{
-                        auth,
-                        setAuth,
-                        isSignVisible,
-                        setSignVisible,
-                        isAccountMenuVisible,
-                        setAccountMenuVisible,
-                        isCertificateByIDVisible,
-                        setCertificateByIDVisible,
-                        certificateByID,
-                        setCertificateByID
+                        auth, setAuth,
+                        isSignVisible, setSignVisible,
+                        isAccountMenuVisible, setAccountMenuVisible,
+                        isCertificateByIDVisible, setCertificateByIDVisible,
+                        certificateByID, setCertificateByID,
+                        isAddTagVisible,setAddTagVisible
                     }}>
                         <BrowserRouter>
                             <div className={classes.container}>
