@@ -36,7 +36,8 @@ const Text = ({children,fSize,color,bold,...props}) => {
     bold = boldValidator(bold);
 
     return (
-        <div className={classnames(font,fSize,color,bold)}>
+        <div className={classnames(font,fSize,color,bold)}
+             {...props}>
             {children.toString().toUpperCase()}
         </div>
     );

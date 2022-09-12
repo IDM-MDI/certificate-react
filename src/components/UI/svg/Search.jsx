@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import SearchLogo from "./img/search.svg";
 import classes from './Svg.module.css'
-import SearchInput from "../input/SearchInput";
+import SearchInput from "../input/UnderLineInput";
 
 const Search = ({setSearch,...props}) => {
     const[input,setInput] = useState('')

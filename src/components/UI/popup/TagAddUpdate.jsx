@@ -1,36 +1,37 @@
 import React, {useContext, useRef, useState} from 'react';
 import {Context} from "../context/context";
-import {isPopupActive} from "../validator/PopupValidator";
 import classes from './Popup.module.css'
 import Text from "../text/Text";
 import BuyDeleteButton from "../button/BuyDeleteButton";
 import NoImage from '../list/img/noImage.png'
 import EntityInput from "../input/EntityInput";
+import Popup from "./Popup";
 
 
-const TagAdd = () => {
+const TagAddUpdate = ({children,...props}) => {
     const context = useContext(Context);
     const[image,setImage] = useState(NoImage)
     const[isAddTagVisible,setAddTagVisible] = [context.isAddTagVisible,context.setAddTagVisible]
 
+    const titleName = children ? 'UPDATE' : 'ADD'
+
     return (
-        <div className={isPopupActive(isAddTagVisible)}
-             onClick={() => setAddTagVisible(false)}>
-            <div className={classes.addTagBlock} onClick={(e) => e.stopPropagation()}>
-                <Title />
-                <Content image={image} setImage={setImage} />
-            </div>
-        </div>
+        <Popup isVisible={isAddTagVisible}
+               setVisible={setAddTagVisible}
+               blockClass={classes.addTagBlock}>
+            <Title titleName={titleName}/>
+            <Content image={image} setImage={setImage} />
+        </Popup>
     );
 };
-export default TagAdd;
+export default TagAddUpdate;
 
-function Title() {
+function Title({titleName}) {
     return (
         <div className={classes.addTagTitle}>
-            <Text fSize={36}>ADD TAG</Text>
+            <Text fSize={36}>{titleName + ' TAG'}</Text>
             <BuyDeleteButton color={'green'}>
-                ADD
+                {titleName}
             </BuyDeleteButton>
         </div>
     );

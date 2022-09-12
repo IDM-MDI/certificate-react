@@ -10,6 +10,7 @@ import {fetchEntity} from "../API/FetchService";
 import Loader from "../loader/Loader";
 import CertificateTitle from "../list/title/CertificateTitle";
 import {fetchPage, nextPage, prevPage} from "./PageService";
+import CertificateAddUpdate from "../popup/CertificateAddUpdate";
 
 const URL = 'http://localhost:8080/api/v1/gifts';
 const SIZE = 25;
@@ -44,6 +45,7 @@ const CertificatesPage = () => {
         <div className={classes.container}>
             <Top></Top>
             <CertificateByID />
+            <CertificateAddUpdate />
             <div className={cl.listBlock}>
                 <CertificateTitle param={param} setParam={setParam} />
                 {

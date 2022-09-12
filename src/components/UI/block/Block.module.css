@@ -16,7 +16,7 @@
     align-items: center;
     flex-direction: column;
 
-    gap: 162px;
+    gap: 130px;
 
     width: 1650px;
     height: 683px;
@@ -26,6 +26,10 @@
 }
 
 .topTitle {
+    align-self: center;
+    display: flex;
+    align-items: center;
+    gap: 600px;
     text-align: center;
     margin-top: 18px;
 }

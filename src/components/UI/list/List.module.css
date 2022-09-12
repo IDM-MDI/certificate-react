@@ -205,3 +205,27 @@
     display: flex;
     gap: 150px;
 }
+
+.tagByCertificate {
+    display: flex;
+    gap: 50px;
+}
+
+.tagByCertificateImage {
+    object-fit: cover;
+    object-position: 50%;
+
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    background-color: #FCF9F9;
+}
+
+.tagsByCertificateList {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    margin-top: 20px;
+    margin-left: 30px;
+}

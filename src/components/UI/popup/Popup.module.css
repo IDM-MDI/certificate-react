@@ -75,7 +75,7 @@
 }
 /* ------------------------------------CERTIFICATE BY ID---------------------------------- */
 
-.certificateByIdBlock {
+.certificateBlock {
     display: flex;
     flex-direction: column;
     gap: 90px;
@@ -92,54 +92,59 @@
     overflow: scroll;
 }
 
-.certificateByIdShopAndTagSize {
+.certificateShopAndTagSize {
     width: 250px;
 }
 
-.certificateByIdTitle {
+.certificateTitle {
     margin-top: 30px;
     display: flex;
     justify-content: space-around;
     align-items: center;
     text-align: center;
-    gap: 281px;
+    gap: 200px;
 }
 
-.certificateByIdOrder {
+.certificateOrder {
     display: flex;
     align-items: center;
-    gap: 124px;
+    gap: 100px;
 }
 
-.certificateByIdContent {
+.certificateOrder > input {
+    width: 150px;
+    font-size: 32px;
+}
+
+.certificateContent {
     margin-left: 70px;
     display: flex;
     gap: 115px;
 }
 
-.certificateByIdShopAndTags {
+.certificateShopAndTags {
     display: flex;
     flex-direction: column;
-    gap: 100px;
+    align-items: center;
+    gap: 80px;
 }
 
-.certificateByIdShop {
-    display: flex;
-    flex-direction: column;
-    gap: 35px;
-}
-
-.certificateByIdTags {
-    display: flex;
-    flex-direction: column;
-    gap: 35px;
-}
-
-.certificateByIdDescription {
+.certificateShop {
     display: flex;
     align-items: center;
-    text-align:center;
-    text-space: 15px;
+    flex-direction: column;
+    gap: 35px;
+}
+
+.certificateTags {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 35px;
+}
+
+.certificateDescription {
+    display: flex;
 
     width: 926px;
     height: 357px;
@@ -148,48 +153,63 @@
     border-radius: 20px;
 }
 
-.certificateByIdImages {
+.certificateDescription div {
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 10px;
+    width: fit-content;
+    block-size: fit-content;
+    word-wrap: break-word;
+}
+
+.certificateImages {
     margin-left: 70px;
     display: flex;
     gap: 50px;
 }
 
-.certificateByIdSmallImages {
+.certificateSmallImages {
     display: flex;
     flex-direction: column;
     gap: 35px;
 }
 
-.certificateByIdSmallImage {
+.certificateSmallImage {
     object-fit: cover;
     object-position: 50%;
     width: 333px;
     height: 149px;
 
-    background-color: #FCF9F9;
     border: 3px solid #297334;
     border-radius: 20px;
 }
 
-.certificateByIdSmallImage:hover {
+.certificateSmallImage:hover {
     cursor: pointer;
 }
 
-.certificateByIdBigImage {
+.certificateBigImage {
     object-fit: cover;
     object-position: 50%;
     width: 926px;
     height: 513px;
 
-    background-color: #FCF9F9;
     border-radius: 20px;
 }
 
-.certificateByIdName {
+.pointer:hover {
+    cursor: pointer;
+}
+
+.certificateName {
     display: flex;
     gap: 10px;
     align-items: center;
     justify-content: center;
+}
+
+.certificateName > input{
+    font-size: 36px;
 }
 
 /* ------------------------------------SIGN---------------------------------- */
@@ -215,4 +235,24 @@
 }
 .signUpBlock {
     height: 593px;
+}
+
+/* ------------------------------------TAGS---------------------------------- */
+
+.tagsByCertificateBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 90px;
+
+    box-sizing: border-box;
+
+    width: 500px;
+    height: 400px;
+
+    background: #0A1E27;
+
+    border: 5px solid #318B37;
+    border-radius: 20px;
+
+    overflow: scroll;
 }

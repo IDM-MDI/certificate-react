@@ -18,6 +18,7 @@ function App() {
     const[isCertificateByIDVisible,setCertificateByIDVisible] = useState(false);
     const[certificateByID,setCertificateByID] = useState(null);
     const[isAddTagVisible,setAddTagVisible] = useState(false);
+    const[isAddCertificateVisible,setAddCertificateVisible] = useState(false)
 
     useMemo(() => {
         initJWT()
@@ -41,7 +42,8 @@ function App() {
                         isAccountMenuVisible, setAccountMenuVisible,
                         isCertificateByIDVisible, setCertificateByIDVisible,
                         certificateByID, setCertificateByID,
-                        isAddTagVisible,setAddTagVisible
+                        isAddTagVisible,setAddTagVisible,
+                        isAddCertificateVisible,setAddCertificateVisible
                     }}>
                         <BrowserRouter>
                             <div className={classes.container}>

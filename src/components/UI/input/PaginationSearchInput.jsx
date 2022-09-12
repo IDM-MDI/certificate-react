@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
-import SearchInput from "./SearchInput";
+import UnderLineInput from "./UnderLineInput";
 
 const PaginationSearchInput = ({setInput,type,...props}) => {
     const [searchInput,setSearchInput] = useState(0)
 
     return (
-        <SearchInput
+        <UnderLineInput
             type={'Number'}
             onChange={event => {
                 setSearchInput(event.target.value);

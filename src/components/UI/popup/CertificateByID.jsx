@@ -6,10 +6,17 @@ import {Context} from "../context/context";
 import BuyDeleteButton from "../button/BuyDeleteButton";
 import {addCertificateToOrder} from "../API/OrderService";
 import Edit from "../svg/Edit";
-import {isPopupActive} from "../validator/PopupValidator";
+import Popup from "./Popup";
+import Remove from "../svg/Remove";
+import DescriptionInput from "../input/DescriptionInput";
+import {isTagsEmpty} from "../validator/EntityValidator";
+import TagsByCertificatePopup from "./TagsByCertificatePopup";
 
-const CertificateById = (props) => {
+const CertificateById = () => {
     const context = useContext(Context);
+    const[selectedImage,setSelectedImage] = useState(null)
+    const[isTagsByCertificateActive,setTagsByCertificateActive] = useState()
+
     const [
         certificateByID,
         isCertificateByIDVisible,
@@ -19,11 +26,11 @@ const CertificateById = (props) => {
         context.isCertificateByIDVisible,
         context.setCertificateByIDVisible
     ]
-    const [selectedImage,setSelectedImage] = useState(null)
 
     useEffect(()=> {
         if(certificateByID !== null) {
             setSelectedImage(images.mainImage)
+            setTagsByCertificateActive(isTagsEmpty(certificateByID.tags) === true ? undefined : false)
         }
     },[certificateByID])
 
@@ -42,24 +49,35 @@ const CertificateById = (props) => {
     }
 
     return (
-        <div className={isPopupActive(isCertificateByIDVisible)} onClick={() => setCertificateByIDVisible(false)}>
-            <div className={classes.certificateByIdBlock} onClick={(e) => e.stopPropagation()}>
-                <Title context={context}>{certificateByID}</Title>
-                <Content>{certificateByID}</Content>
-                <Images images={images} selectedImage={selectedImage} setSelectedImage={setSelectedImage} />
-            </div>
-        </div>
+        <Popup
+            isVisible={isCertificateByIDVisible}
+            setVisible={setCertificateByIDVisible}
+            blockClass={classes.certificateBlock}>
+            <Title context={context}>{certificateByID}</Title>
+            <TagsByCertificatePopup
+                active={isTagsByCertificateActive}
+                setActive={setTagsByCertificateActive}>
+                {certificateByID.tags}
+            </TagsByCertificatePopup>
+            <Content
+                isActive={isTagsByCertificateActive}
+                setActive={setTagsByCertificateActive}>
+                {certificateByID}
+            </Content>
+            <Images images={images} selectedImage={selectedImage} setSelectedImage={setSelectedImage} />
+        </Popup>
     );
 };
 
 function Title({children, context,...props}) {
     return (
-        <div className={classes.certificateByIdTitle}>
-            <div className={classes.certificateByIdName}>
+        <div className={classes.certificateTitle}>
+            <div className={classes.certificateName}>
                 <Text fSize={36}>{children.name + ' Certificate'}</Text>
                 <Edit />
+                <Remove />
             </div>
-            <div className={classes.certificateByIdOrder}>
+            <div className={classes.certificateOrder}>
                 <Text fSize={32}>{children.price + '$'}</Text>
                 <BuyDeleteButton color={'green'} onClick={() => {
                     addCertificateToOrder(children.id,context)
@@ -71,27 +89,35 @@ function Title({children, context,...props}) {
     );
 }
 
-function Content({children}) {
+function Content({children,isActive,setActive}) {
     return (
-        <div className={classes.certificateByIdContent}>
-            <div className={classes.certificateByIdShopAndTags}>
-                <div className={classes.certificateByIdShop}>
+        <div className={classes.certificateContent}>
+            <div className={classes.certificateShopAndTags}>
+                <div className={classes.certificateShop}>
                     <Text fSize={32}>Shop</Text>
-                    <div className={classes.certificateByIdShopAndTagSize}>
+                    <div className={classes.certificateShopAndTagSize}>
                         <Text fSize={24}>
                             {children.shop}
                         </Text>
                     </div>
                 </div>
-                <div className={classes.certificateByIdTags}>
+                <div className={classes.certificateTags}>
                     <Text fSize={32}>Tags</Text>
-                    <Text fSize={24}>There are some text</Text>
+                    {
+                        isActive === undefined ?
+                        <Text fSize={24}>No tags found</Text>
+                        :
+                        <div className={classes.pointer}
+                            onClick={() => setActive(true)}>
+                            <Text fSize={24}>View tags</Text>
+                        </div>
+                    }
                 </div>
             </div>
-            <div className={classes.certificateByIdDescription}>
-                <Text fSize={20}>
-                    {children.description}
-                </Text>
+            <div className={classes.certificateDescription}>
+                <DescriptionInput
+                    value={children.description}
+                    disabled/>
             </div>
         </div>
     );
@@ -99,13 +125,13 @@ function Content({children}) {
 
 function Images({images,selectedImage,setSelectedImage}) {
     return (
-        <div className={classes.certificateByIdImages}>
-            <div className={classes.certificateByIdSmallImages}>
-                <img src={images.mainImage} alt="" className={classes.certificateByIdSmallImage} onClick={() => setSelectedImage(images.mainImage)}/>
-                <img src={images.secondImage} alt="" className={classes.certificateByIdSmallImage} onClick={() => setSelectedImage(images.secondImage)}/>
-                <img src={images.thirdImage} alt="" className={classes.certificateByIdSmallImage} onClick={() => setSelectedImage(images.thirdImage)}/>
+        <div className={classes.certificateImages}>
+            <div className={classes.certificateSmallImages}>
+                <img src={images.mainImage} alt="" className={classes.certificateSmallImage} onClick={() => setSelectedImage(images.mainImage)}/>
+                <img src={images.secondImage} alt="" className={classes.certificateSmallImage} onClick={() => setSelectedImage(images.secondImage)}/>
+                <img src={images.thirdImage} alt="" className={classes.certificateSmallImage} onClick={() => setSelectedImage(images.thirdImage)}/>
             </div>
-            <img src={selectedImage} alt="" className={classes.certificateByIdBigImage}/>
+            <img src={selectedImage} alt="" className={classes.certificateBigImage}/>
         </div>
     );
 }

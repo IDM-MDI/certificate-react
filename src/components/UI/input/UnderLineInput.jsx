@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from "./AuthInput.module.css";
 
-const SearchInput = (props) => {
+const UnderLineInput = ({...props}) => {
     return (
         <input
             className={classes.search}
@@ -10,4 +10,4 @@ const SearchInput = (props) => {
     );
 };
 
-export default SearchInput;
+export default UnderLineInput;
