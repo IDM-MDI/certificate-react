@@ -13,12 +13,18 @@ import Loader from "./components/UI/loader/Loader";
 function App() {
     const[isBusy,setBusy] = useState(true)
     const[auth,setAuth] = useState(undefined);
+
     const[isSignVisible,setSignVisible] = useState(false);
     const[isAccountMenuVisible,setAccountMenuVisible] = useState(false);
+
     const[isCertificateByIDVisible,setCertificateByIDVisible] = useState(false);
     const[certificateByID,setCertificateByID] = useState(null);
-    const[isAddTagVisible,setAddTagVisible] = useState(false);
-    const[isAddCertificateVisible,setAddCertificateVisible] = useState(false)
+
+    const[isAddUpdateTagVisible,setAddUpdateTagVisible] = useState(false);
+    const[updateTag,setUpdateTag] = useState(null)
+
+    const[isAddUpdateCertificateVisible,setAddUpdateCertificateVisible] = useState(false)
+    const[updateCertificate,setUpdateCertificate] = useState(null)
 
     useMemo(() => {
         initJWT()
@@ -42,8 +48,10 @@ function App() {
                         isAccountMenuVisible, setAccountMenuVisible,
                         isCertificateByIDVisible, setCertificateByIDVisible,
                         certificateByID, setCertificateByID,
-                        isAddTagVisible,setAddTagVisible,
-                        isAddCertificateVisible,setAddCertificateVisible
+                        isAddUpdateTagVisible,setAddUpdateTagVisible,
+                        updateTag,setUpdateTag,
+                        isAddUpdateCertificateVisible,setAddUpdateCertificateVisible,
+                        updateCertificate,setUpdateCertificate
                     }}>
                         <BrowserRouter>
                             <div className={classes.container}>

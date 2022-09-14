@@ -1,4 +1,4 @@
-import React, {useContext, useState, useRef} from 'react';
+import React, {useContext, useState, useRef, useEffect} from 'react';
 import Popup from "./Popup";
 import {Context} from "../context/context";
 import NoImage from "../list/img/noImage.png";
@@ -8,26 +8,73 @@ import BuyDeleteButton from "../button/BuyDeleteButton";
 import DescriptionInput from "../input/DescriptionInput";
 import UnderLineInput from "../input/UnderLineInput";
 import classnames from "classnames";
+import {isTagsEmpty} from "../validator/EntityValidator";
 
-const CertificateAddUpdate = ({children,...props}) => {
-    const context = useContext(Context);
-    const[isAddCertificateVisible,setAddCertificateVisible] = [context.isAddCertificateVisible,context.setAddCertificateVisible]
-    const[certificate,setCertificate] = useState({
-        name: '',
-        shop: '',
-        price: 0,
-        description: '',
-        mainImage: NoImage,
-        secondImage: NoImage,
-        thirdImage: NoImage
+const EMPTY_VALUE = {
+    name: '',
+    shop: '',
+    price: 0,
+    description: '',
+    mainImage: NoImage,
+    secondImage: NoImage,
+    thirdImage: NoImage,
+    tags: []
+}
+
+function updateValue(updateCertificate,setCertificate) {
+    if(!updateCertificate) {
+        return;
+    }
+    setCertificate({
+        name: updateCertificate.name ? updateCertificate.name : '',
+        shop: updateCertificate.shop ? updateCertificate.shop : '',
+        price: updateCertificate.price ? updateCertificate.price : 0,
+        description: updateCertificate.description ? updateCertificate.description : '',
+        mainImage : updateCertificate.haveMainImage === false? NoImage
+            :
+            updateCertificate._links.self.href + '/img?name=main',
+        secondImage : updateCertificate.haveSecondImage === false? NoImage
+            :
+            updateCertificate._links.self.href + '/img?name=second',
+        thirdImage : updateCertificate.haveThirdImage === false? NoImage
+            :
+            updateCertificate._links.self.href + '/img?name=third',
+        tags: isTagsEmpty(updateCertificate.tags) ? [] : updateCertificate.tags
     })
+}
 
-    const isEmpty = children === undefined || children === null;
+const CertificateAddUpdate = ({...props}) => {
+    const context = useContext(Context);
+    const[
+            isAddUpdateCertificateVisible,
+            setAddUpdateCertificateVisible,
+            updateCertificate,
+            setUpdateCertificate] =
+        [
+            context.isAddUpdateCertificateVisible,
+            context.setAddUpdateCertificateVisible,
+            context.updateCertificate,
+            context.setUpdateCertificate]
+
+    const[certificate,setCertificate] = useState(EMPTY_VALUE)
+
+    useEffect(() => {
+        updateValue(updateCertificate,setCertificate)
+    },[updateCertificate])
+
+    useEffect(() => {
+        if(!isAddUpdateCertificateVisible) {
+            setCertificate(EMPTY_VALUE)
+            setUpdateCertificate(null)
+        }
+    },[isAddUpdateCertificateVisible])
+
+    const isEmpty = updateCertificate === null;
 
     return (
         <Popup
-            isVisible={isAddCertificateVisible}
-            setVisible={setAddCertificateVisible}
+            isVisible={isAddUpdateCertificateVisible}
+            setVisible={setAddUpdateCertificateVisible}
             blockClass={classes.certificateBlock}>
             <Title
                 isEmpty={isEmpty}
@@ -52,14 +99,38 @@ export default CertificateAddUpdate;
 
 
 function Title({context,isEmpty,certificate,setCertificate,...props}) {
+    function changeName(value) {
+        setCertificate(param => ({
+            ...param,
+            name: value
+        }))
+    }
+
+    function changePrice(value) {
+        setCertificate(param => ({
+            ...param,
+            price: value
+        }))
+    }
+
     const titleName = isEmpty ? 'ADD' : 'UPDATE'
     return (
         <div className={classes.certificateTitle}>
             <div className={classes.certificateName}>
-                <UnderLineInput />
+                <UnderLineInput
+                    style={{
+                    textAlign: 'left'
+                    }}
+                    value={certificate.name}
+                    onChangeSet={changeName}
+                    placeholder={'Enter name'}/>
             </div>
             <div className={classes.certificateOrder}>
-                <UnderLineInput type={'number'} />
+                <UnderLineInput
+                    placeholder={'Enter price'}
+                    value={certificate.price}
+                    onChangeSet={changePrice}
+                    type={'number'} />
                 <BuyDeleteButton color={'green'} onClick={() => {
                 }}>
                     {titleName + ' CERTIFICATE'}
@@ -70,13 +141,31 @@ function Title({context,isEmpty,certificate,setCertificate,...props}) {
 }
 
 function Content({certificate,setCertificate,...props}) {
+    function changeShop(value) {
+        setCertificate(param => ({
+        ...param,
+        shop: value
+        }))
+    }
+
+    function changeDescription(value) {
+        setCertificate(param => ({
+            ...param,
+            description: value
+        }))
+    }
+
+
     return (
         <div className={classes.certificateContent}>
             <div className={classes.certificateShopAndTags}>
                 <div className={classes.certificateShop}>
                     <Text fSize={32}>Shop</Text>
                     <div className={classes.certificateShopAndTagSize}>
-                        <UnderLineInput/>
+                        <UnderLineInput
+                            value={certificate.shop}
+                            onChangeSet={changeShop}
+                            placeholder={'Enter shop'}/>
                     </div>
                 </div>
                 <div className={classes.certificateTags}>
@@ -84,7 +173,11 @@ function Content({certificate,setCertificate,...props}) {
                     <Text fSize={24}>There are some text</Text>
                 </div>
             </div>
-            <DescriptionInput />
+            <DescriptionInput
+                value={certificate.description}
+                onChangeSet={changeDescription}
+                placeholder={'Enter description'}
+            />
         </div>
     );
 }

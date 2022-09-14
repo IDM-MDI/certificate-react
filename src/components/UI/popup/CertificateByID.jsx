@@ -20,11 +20,11 @@ const CertificateById = () => {
     const [
         certificateByID,
         isCertificateByIDVisible,
-        setCertificateByIDVisible
+        setCertificateByIDVisible,
     ] = [
         context.certificateByID,
         context.isCertificateByIDVisible,
-        context.setCertificateByIDVisible
+        context.setCertificateByIDVisible,
     ]
 
     useEffect(()=> {
@@ -70,11 +70,25 @@ const CertificateById = () => {
 };
 
 function Title({children, context,...props}) {
+    const [
+        setUpdateCertificate,
+        setCertificateByIDVisible,
+        setAddUpdateCertificateVisible] =
+        [
+        context.setUpdateCertificate,
+        context.setCertificateByIDVisible,
+        context.setAddUpdateCertificateVisible
+        ]
+
     return (
         <div className={classes.certificateTitle}>
             <div className={classes.certificateName}>
                 <Text fSize={36}>{children.name + ' Certificate'}</Text>
-                <Edit />
+                <Edit onClick={() => {
+                    setUpdateCertificate(children)
+                    setCertificateByIDVisible(false)
+                    setAddUpdateCertificateVisible(true)
+                }}/>
                 <Remove />
             </div>
             <div className={classes.certificateOrder}>

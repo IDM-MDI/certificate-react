@@ -8,14 +8,17 @@ import {Context} from "../../context/context";
 
 const CertificateTitle = ({param,setParam}) => {
     const context = useContext(Context);
-    const[isAddCertificateVisible,setAddCertificateVisible] = [context.isAddCertificateVisible,context.setAddCertificateVisible]
+    const[isAddUpdateCertificateVisible,setAddUpdateCertificateVisible] =
+        [
+            context.isAddUpdateCertificateVisible,
+            context.setAddUpdateCertificateVisible]
 
     return (
         <div className={classes.listTitle}>
             <div className={classes.titleContent}>
                 <div className={classes.titleName}>
                     <Text fSize={36}>Certificates</Text>
-                    <Add onClick={() => setAddCertificateVisible(true)} />
+                    <Add onClick={() => setAddUpdateCertificateVisible(true)} />
                 </div>
                 <div className={classes.titleSort}>
                     <Sort param={param} setParam={setParam}

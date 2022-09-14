@@ -9,7 +9,7 @@ import {Context} from "../../context/context";
 
 const TagTitle = ({param,setParam,setSearch,...props}) => {
     const context = useContext(Context);
-    const[isAddTagVisible,setAddTagVisible] = [context.isAddTagVisible,context.setAddTagVisible]
+    const[isAddTagVisible,setAddTagVisible] = [context.isAddUpdateTagVisible,context.setAddUpdateTagVisible]
 
     return (
         <div className={classes.listTitle}>

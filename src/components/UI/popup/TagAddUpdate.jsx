@@ -8,19 +8,31 @@ import EntityInput from "../input/EntityInput";
 import Popup from "./Popup";
 
 
-const TagAddUpdate = ({children,...props}) => {
-    const context = useContext(Context);
-    const[image,setImage] = useState(NoImage)
-    const[isAddTagVisible,setAddTagVisible] = [context.isAddTagVisible,context.setAddTagVisible]
+const EMPTY_TAG = {
+    name: '',
+    image: NoImage
+}
 
-    const titleName = children ? 'UPDATE' : 'ADD'
+const TagAddUpdate = ({...props}) => {
+    const context = useContext(Context);
+    const[tag,setTag] = useState(EMPTY_TAG)
+    const[isAddUpdateTagVisible,
+        setAddUpdateTagVisible,
+        updateTag,
+        setUpdateTag] =
+        [context.isAddUpdateTagVisible,
+         context.setAddUpdateTagVisible,
+         context.updateTag,
+         context.setUpdateTag]
+
+    const titleName = updateTag ? 'UPDATE' : 'ADD'
 
     return (
-        <Popup isVisible={isAddTagVisible}
-               setVisible={setAddTagVisible}
+        <Popup isVisible={isAddUpdateTagVisible}
+               setVisible={setAddUpdateTagVisible}
                blockClass={classes.addTagBlock}>
             <Title titleName={titleName}/>
-            <Content image={image} setImage={setImage} />
+            <Content tag={tag} setTag={setTag} />
         </Popup>
     );
 };
@@ -37,7 +49,7 @@ function Title({titleName}) {
     );
 }
 
-function Content({image,setImage}) {
+function Content({tag,setTag}) {
     const inputFile = useRef(null)
     return (
         <div className={classes.addTagContent}>
@@ -53,7 +65,7 @@ function Content({image,setImage}) {
                     type="file"
                     ref={inputFile}
                     accept={'image/*'}
-                    onChange={event => setImage(URL.createObjectURL(event.target.files[0]))}
+                    onChange={event => setTag(URL.createObjectURL(event.target.files[0]))}
                     hidden
                 />
             </div>
@@ -61,7 +73,10 @@ function Content({image,setImage}) {
                 <div className={classes.addTagImageTitle}>
                     <Text>SELECT IMAGE</Text>
                     <div className={classes.addTagImageClear}
-                         onClick={() => setImage(NoImage)}>
+                         onClick={() => setTag(param => ({
+                             ...param,
+                             image: NoImage
+                         }))}>
                         <Text>CLEAR</Text>
                     </div>
                 </div>
@@ -70,7 +85,7 @@ function Content({image,setImage}) {
                         inputFile.current.click()
                     }}
                     className={classes.addTagImage}
-                    src={image}
+                    src={tag.image}
                     alt=""
                 />
             </div>

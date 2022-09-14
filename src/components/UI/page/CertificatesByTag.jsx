@@ -8,6 +8,7 @@ import {fetchEntity} from "../API/FetchService";
 import Loader from "../loader/Loader";
 import CertificateByID from "../popup/CertificateByID";
 import {fetchPage, nextPage, prevPage} from "./PageService";
+import TagAddUpdate from "../popup/TagAddUpdate";
 
 const CERTIFICATE_URL = 'http://localhost:8080/api/v1/gifts/tag/';
 const TAG_BY_ID_URL = 'http://localhost:8080/api/v1/tags/';
@@ -52,6 +53,7 @@ const CertificatesByTag = () => {
                     :
                     <div className={classes.container}>
                         <ChosenTag data={tagByID !== null ? tagByID.content[0] : null}/>
+                        <TagAddUpdate />
                         <CertificateByID />
                         <CertificateList data={data}/>
                         <Pagination
