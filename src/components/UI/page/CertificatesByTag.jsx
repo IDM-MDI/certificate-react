@@ -52,7 +52,7 @@ const CertificatesByTag = () => {
                     <Loader />
                     :
                     <div className={classes.container}>
-                        <ChosenTag data={tagByID !== null ? tagByID.content[0] : null}/>
+                        <ChosenTag>{tagByID !== null ? tagByID.content[0] : null}</ChosenTag>
                         <TagAddUpdate />
                         <CertificateByID />
                         <CertificateList data={data}/>

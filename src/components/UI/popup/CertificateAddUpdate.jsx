@@ -155,7 +155,6 @@ function Content({certificate,setCertificate,...props}) {
         }))
     }
 
-
     return (
         <div className={classes.certificateContent}>
             <div className={classes.certificateShopAndTags}>

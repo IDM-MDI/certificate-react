@@ -1,4 +1,4 @@
-import React, {useContext, useRef, useState} from 'react';
+import React, {useContext, useRef, useState,useEffect} from 'react';
 import {Context} from "../context/context";
 import classes from './Popup.module.css'
 import Text from "../text/Text";
@@ -13,9 +13,22 @@ const EMPTY_TAG = {
     image: NoImage
 }
 
+function updateValue(updateTag,setTag) {
+    if(!updateTag) {
+        return;
+    }
+    setTag({
+        name: updateTag.name ? updateTag.name : '',
+        image: updateTag.haveMainImage === false? NoImage
+            :
+            updateTag._links.self.href + '/img?name=main',
+    })
+}
+
 const TagAddUpdate = ({...props}) => {
     const context = useContext(Context);
     const[tag,setTag] = useState(EMPTY_TAG)
+
     const[isAddUpdateTagVisible,
         setAddUpdateTagVisible,
         updateTag,
@@ -25,20 +38,33 @@ const TagAddUpdate = ({...props}) => {
          context.updateTag,
          context.setUpdateTag]
 
-    const titleName = updateTag ? 'UPDATE' : 'ADD'
+
+    useEffect(() => {
+        updateValue(updateTag,setTag)
+    },[updateTag])
+
+    useEffect(() => {
+        if(!isAddUpdateTagVisible) {
+            setTag(EMPTY_TAG)
+            setUpdateTag(null)
+        }
+    },[isAddUpdateTagVisible])
+
+    const isEmpty = updateTag === null;
 
     return (
         <Popup isVisible={isAddUpdateTagVisible}
                setVisible={setAddUpdateTagVisible}
                blockClass={classes.addTagBlock}>
-            <Title titleName={titleName}/>
+            <Title isEmpty={isEmpty}/>
             <Content tag={tag} setTag={setTag} />
         </Popup>
     );
 };
 export default TagAddUpdate;
 
-function Title({titleName}) {
+function Title({isEmpty}) {
+    const titleName = isEmpty ? 'ADD' : 'UPDATE'
     return (
         <div className={classes.addTagTitle}>
             <Text fSize={36}>{titleName + ' TAG'}</Text>
@@ -51,14 +77,21 @@ function Title({titleName}) {
 
 function Content({tag,setTag}) {
     const inputFile = useRef(null)
+
+    function changeName(value) {
+        setTag(param => ({
+            ...param,
+            name: value
+        }))
+    }
+
     return (
         <div className={classes.addTagContent}>
             <div>
                 <Text>NAME</Text>
                 <EntityInput
-                    onChange={() => {
-
-                    }}
+                    value={tag.name}
+                    onChangeSet={changeName}
                     type={'text'}
                 />
                 <input

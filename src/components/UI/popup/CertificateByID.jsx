@@ -84,12 +84,12 @@ function Title({children, context,...props}) {
         <div className={classes.certificateTitle}>
             <div className={classes.certificateName}>
                 <Text fSize={36}>{children.name + ' Certificate'}</Text>
-                <Edit onClick={() => {
+                <Edit byAdmin={true} onClick={() => {
                     setUpdateCertificate(children)
                     setCertificateByIDVisible(false)
                     setAddUpdateCertificateVisible(true)
                 }}/>
-                <Remove />
+                <Remove byAdmin={true}/>
             </div>
             <div className={classes.certificateOrder}>
                 <Text fSize={32}>{children.price + '$'}</Text>

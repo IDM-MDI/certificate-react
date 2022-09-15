@@ -9,14 +9,14 @@ import {Context} from "../../context/context";
 
 const TagTitle = ({param,setParam,setSearch,...props}) => {
     const context = useContext(Context);
-    const[isAddTagVisible,setAddTagVisible] = [context.isAddUpdateTagVisible,context.setAddUpdateTagVisible]
+    const[setAddTagVisible] = [context.setAddUpdateTagVisible]
 
     return (
         <div className={classes.listTitle}>
             <div className={classes.titleContent}>
                 <div className={classes.titleName}>
                     <Text fSize={36}>Tags</Text>
-                    <Add onClick={() => setAddTagVisible(true)}/>
+                    <Add byAdmin={true} onClick={() => setAddTagVisible(true)}/>
                 </div>
                 <div className={classes.titleSort}>
                     <Sort param={param} setParam={setParam}

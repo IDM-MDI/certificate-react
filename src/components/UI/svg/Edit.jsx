@@ -1,8 +1,16 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import Pencil from './img/pencil.svg'
 import classes from './Svg.module.css'
+import {isAdmin, isNotAdmin} from "../validator/EntityValidator";
+import {Context} from "../context/context";
 
-const Edit = ({onClick}) => {
+const Edit = ({byAdmin,onClick}) => {
+    const context = useContext(Context);
+
+    if(byAdmin && isNotAdmin(context.auth)) {
+        return;
+    }
+
     return (
         <div className={classes.svg} onClick={onClick}>
             <img

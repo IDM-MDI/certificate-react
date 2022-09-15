@@ -18,7 +18,7 @@ const CertificateTitle = ({param,setParam}) => {
             <div className={classes.titleContent}>
                 <div className={classes.titleName}>
                     <Text fSize={36}>Certificates</Text>
-                    <Add onClick={() => setAddUpdateCertificateVisible(true)} />
+                    <Add byAdmin={true} onClick={() => setAddUpdateCertificateVisible(true)} />
                 </div>
                 <div className={classes.titleSort}>
                     <Sort param={param} setParam={setParam}
