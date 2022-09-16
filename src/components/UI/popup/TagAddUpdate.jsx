@@ -2,7 +2,7 @@ import React, {useContext, useRef, useState,useEffect} from 'react';
 import {Context} from "../context/context";
 import classes from './Popup.module.css'
 import Text from "../text/Text";
-import BuyDeleteButton from "../button/BuyDeleteButton";
+import CustomButton from "../button/CustomButton";
 import NoImage from '../list/img/noImage.png'
 import EntityInput from "../input/EntityInput";
 import Popup from "./Popup";
@@ -68,9 +68,9 @@ function Title({isEmpty}) {
     return (
         <div className={classes.addTagTitle}>
             <Text fSize={36}>{titleName + ' TAG'}</Text>
-            <BuyDeleteButton color={'green'}>
+            <CustomButton color={'green'}>
                 {titleName}
-            </BuyDeleteButton>
+            </CustomButton>
         </div>
     );
 }

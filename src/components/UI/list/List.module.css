@@ -1,3 +1,10 @@
+.reloadText {
+    text-align: center;
+}
+.reloadText:hover {
+    cursor: pointer;
+}
+
 .listTitle {
     display: flex;
     flex-direction: column;
@@ -76,6 +83,7 @@
 }
 
 .certificateItemName {
+    height: 40px;
     display: flex;
     align-items: center;
     text-align: center;
@@ -172,7 +180,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 150px;
+    gap: 200px;
 }
 
 .orderImage {
@@ -196,9 +204,6 @@
 .orderPrice {
     width: 250px;
     height: 49px;
-    display: flex;
-    align-items: center;
-    text-align: center;
 }
 
 .orderButtons {

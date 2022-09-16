@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './Block.module.css'
 import Text from "../text/Text";
 import DefaultImage from "../list/img/istockphoto-1335934273-640x640.jpg";
-import { useNavigate } from 'react-router-dom' ;
+import {useNavigate} from 'react-router-dom' ;
 
 const TopTag = ({children,...props}) => {
     const navigate = useNavigate();

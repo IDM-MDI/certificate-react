@@ -3,7 +3,7 @@ import classes from "./Popup.module.css";
 import Text from "../text/Text";
 import DefaultImage from '../list/img/istockphoto-1335934273-640x640.jpg'
 import {Context} from "../context/context";
-import BuyDeleteButton from "../button/BuyDeleteButton";
+import CustomButton from "../button/CustomButton";
 import {addCertificateToOrder} from "../API/OrderService";
 import Edit from "../svg/Edit";
 import Popup from "./Popup";
@@ -70,6 +70,9 @@ const CertificateById = () => {
 };
 
 function Title({children, context,...props}) {
+    const setMessage = context.setMessage;
+    const setMessageVisible = context.setMessageVisible;
+
     const [
         setUpdateCertificate,
         setCertificateByIDVisible,
@@ -83,7 +86,7 @@ function Title({children, context,...props}) {
     return (
         <div className={classes.certificateTitle}>
             <div className={classes.certificateName}>
-                <Text fSize={36}>{children.name + ' Certificate'}</Text>
+                <Text fSize={36}>{children.name}</Text>
                 <Edit byAdmin={true} onClick={() => {
                     setUpdateCertificate(children)
                     setCertificateByIDVisible(false)
@@ -93,11 +96,19 @@ function Title({children, context,...props}) {
             </div>
             <div className={classes.certificateOrder}>
                 <Text fSize={32}>{children.price + '$'}</Text>
-                <BuyDeleteButton color={'green'} onClick={() => {
+                <CustomButton color={'green'} onClick={() => {
                     addCertificateToOrder(children.id,context)
+                    .then(response => {
+                        setMessage({
+                            type: 'INFO',
+                            message: response.data.response.text
+                        })
+                        setMessageVisible(true)
+                    })
+                    .catch()
                 }}>
                     Add to Card
-                </BuyDeleteButton>
+                </CustomButton>
             </div>
         </div>
     );

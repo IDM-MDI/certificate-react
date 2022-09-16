@@ -3,12 +3,9 @@
 
 
 
-export function fetchPage(setLoading,loadingTime,fetchFunction) {
+export function fetchPage(setLoading,fetchFunction) {
     setLoading(true)
     fetchFunction()
-    setTimeout(() => {
-        setLoading(false)
-    },loadingTime)
 }
 
 export function nextPage(param,setParam) {

@@ -13,7 +13,6 @@ import TagAddUpdate from "../popup/TagAddUpdate";
 const CERTIFICATE_URL = 'http://localhost:8080/api/v1/gifts/tag/';
 const TAG_BY_ID_URL = 'http://localhost:8080/api/v1/tags/';
 const SIZE = 25;
-const MILLISECONDS = 150;
 
 const CertificatesByTag = () => {
     const params = useParams()
@@ -27,7 +26,7 @@ const CertificatesByTag = () => {
     })
 
     useEffect(()=> {
-        fetchPage(setLoading,MILLISECONDS,byTagPage)
+        fetchPage(setLoading,byTagPage)
     },[param])
 
     function byTagPage() {
@@ -39,6 +38,7 @@ const CertificatesByTag = () => {
             param.direction
         ).then(response => {
             setData(response.data)
+            setLoading(false)
         })
         fetchEntity(TAG_BY_ID_URL + params.id).then(response => {
             setTagByID(response.data)

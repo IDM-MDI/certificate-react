@@ -12,12 +12,11 @@ function getImage(certificate) {
     return certificate.haveMainImage? IMAGE_URL + certificate.id + "/img?name=main" : DefaultImage;
 }
 
-const Certificate = ({children,...props}) => {
-    const context = useContext(Context);
+const Certificate = ({children,setMessage,setMessageVisible,context,...props}) => {
     const setCertificateByID = context.setCertificateByID
     const setCertificateByIDVisible = context.setCertificateByIDVisible
 
-    const name = children.name + ' certificate';
+    const name = children.name;
     const image = getImage(children)
     const price = children.price;
 
@@ -34,6 +33,14 @@ const Certificate = ({children,...props}) => {
                 <Text fSize={26} color={'pink'}>{price}$</Text>
                 <div className={classes.certificateItemCart} onClick={() => {
                     addCertificateToOrder(children.id,context)
+                        .then(response => {
+                            setMessage({
+                                type: 'INFO',
+                                message: response.data.response.text
+                            })
+                            setMessageVisible(true)
+                        })
+                        .catch()
                 }}>
                     <img src={Cart} alt={"cart image"}/>
                 </div>

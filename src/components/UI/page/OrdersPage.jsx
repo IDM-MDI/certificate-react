@@ -12,11 +12,12 @@ import {nextPage, prevPage} from "./PageService";
 
 const URL = 'http://localhost:8080/api/v1/order';
 const SIZE = 6;
-const MILLISECONDS = 550;
 
 const OrdersPage = () => {
     const context = useContext(Context);
     const navigate = useNavigate()
+    const [setMessage] = [context.setMessage]
+    const [setMessageVisible] = [context.setMessageVisible]
     const [auth,setAuth] = useState(undefined)
     const [data,setData] = useState(null);
     const [isLoading,setLoading] = useState(true)
@@ -34,20 +35,24 @@ const OrdersPage = () => {
                     if (r === true) {
                         setAuth(context.auth)
                         changeData()
+                        setLoading(false)
                     } else {
-                        navigate(`error`)
+                        setMessage({
+                            type: 'ERROR',
+                            message: 'PLEASE SIGN IN'
+                        })
+                        setMessageVisible(true)
+                        navigate(`/`)
                     }
                 })
         }
         else {
             changeData()
         }
-        setTimeout(()=>{
-            setLoading(false)
-        },MILLISECONDS)
     },[param])
 
     function changeData() {
+        setLoading(true)
         fetchOrder(
             context.auth.jwt,
             URL,
@@ -56,9 +61,18 @@ const OrdersPage = () => {
             param.sort,
             param.direction
         )
-            .then(response => {
-                setData(response.data)
+        .then(response => {
+            setData(response.data)
+            setLoading(false)
+        })
+        .catch(() => {
+            setMessage({
+                type: 'ERROR',
+                message: 'ORDERS NOT FOUND'
             })
+            setMessageVisible(true)
+            setLoading(false)
+        })
     }
 
     return (
@@ -68,7 +82,10 @@ const OrdersPage = () => {
                 isLoading ?
                     <Loader />
                     :
-                    <OrderList data={data} jwt={context.auth.jwt}/>
+                    <OrderList
+                        reload={() => changeData()}
+                        data={data}
+                        jwt={context.auth.jwt}/>
             }
             <Pagination
                 onClickNext={() => {

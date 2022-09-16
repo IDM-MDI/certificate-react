@@ -9,7 +9,7 @@ export async function addCertificateToOrder(id, context) {
     if(!isValid) {
         return;
     }
-    await axios.post(ORDER_URL + '/' + id, {}, {
+    return await axios.post(ORDER_URL + '/' + id, {}, {
         headers: {
             'Authorization': 'Bearer ' + context.auth.jwt
         }

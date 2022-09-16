@@ -3,16 +3,20 @@ import classes from './Block.module.css'
 import Text from "../text/Text";
 import {fetchEntity} from "../API/FetchService";
 import TagSlider from "../slider/TagSlider";
+import Loader from "../loader/Loader";
 
 const TOP_TAG_URL = 'http://localhost:8080/api/v1/tags/top';
 
 const Top = (props) => {
     const [data,setData] = useState(null);
+    const [isLoading,setLoading] = useState(true)
 
     useEffect(() => {
+        setLoading(true)
         fetchEntity(TOP_TAG_URL)
             .then(response => {
                 setData(response.data)
+                setLoading(false)
             })
     },[])
 
@@ -23,7 +27,12 @@ const Top = (props) => {
                     Top tags
                 </Text>
             </div>
-            <TagSlider data={data} />
+            {
+                isLoading ?
+                    <Loader />
+                    :
+                    <TagSlider data={data} />
+            }
         </div>
     );
 };

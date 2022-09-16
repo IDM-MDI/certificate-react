@@ -6,9 +6,9 @@ import {BrowserRouter} from "react-router-dom";
 import AppRouter from "./components/UI/AppRouter";
 import Sign from "./components/UI/popup/Sign";
 import {Context} from "./components/UI/context/context";
-import axios from "axios";
 import {initJWT} from "./components/UI/API/JWTService";
 import Loader from "./components/UI/loader/Loader";
+import MessagePopup from "./components/UI/popup/MessagePopup";
 
 function App() {
     const[isBusy,setBusy] = useState(true)
@@ -25,6 +25,9 @@ function App() {
 
     const[isAddUpdateCertificateVisible,setAddUpdateCertificateVisible] = useState(false)
     const[updateCertificate,setUpdateCertificate] = useState(null)
+
+    const[isMessageVisible,setMessageVisible] = useState(false)
+    const[message,setMessage] = useState(null)
 
     useMemo(() => {
         initJWT()
@@ -51,12 +54,15 @@ function App() {
                         isAddUpdateTagVisible,setAddUpdateTagVisible,
                         updateTag,setUpdateTag,
                         isAddUpdateCertificateVisible,setAddUpdateCertificateVisible,
-                        updateCertificate,setUpdateCertificate
+                        updateCertificate,setUpdateCertificate,
+                        isMessageVisible,setMessageVisible,
+                        message,setMessage
                     }}>
                         <BrowserRouter>
                             <div className={classes.container}>
                                 <Header/>
                                 <Sign/>
+                                <MessagePopup />
                                 <AppRouter />
                                 <Footer />
                             </div>

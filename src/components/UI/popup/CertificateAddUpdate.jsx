@@ -4,7 +4,7 @@ import {Context} from "../context/context";
 import NoImage from "../list/img/noImage.png";
 import classes from './Popup.module.css'
 import Text from "../text/Text";
-import BuyDeleteButton from "../button/BuyDeleteButton";
+import CustomButton from "../button/CustomButton";
 import DescriptionInput from "../input/DescriptionInput";
 import UnderLineInput from "../input/UnderLineInput";
 import classnames from "classnames";
@@ -131,10 +131,10 @@ function Title({context,isEmpty,certificate,setCertificate,...props}) {
                     value={certificate.price}
                     onChangeSet={changePrice}
                     type={'number'} />
-                <BuyDeleteButton color={'green'} onClick={() => {
+                <CustomButton color={'green'} onClick={() => {
                 }}>
-                    {titleName + ' CERTIFICATE'}
-                </BuyDeleteButton>
+                    {titleName}
+                </CustomButton>
             </div>
         </div>
     );

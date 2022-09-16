@@ -256,3 +256,35 @@
 
     overflow: scroll;
 }
+
+
+.messageBlock {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 30px;
+
+    box-sizing: border-box;
+
+    width: 500px;
+    height: 300px;
+
+    background: #0A1E27;
+    border-radius: 20px;
+}
+
+.messageInfo {
+    border: 3px solid #318B37;
+}
+
+.messageWarning {
+    border: 3px solid #8b8231;
+}
+
+.messageError {
+    border: 3px solid #F23A7A;
+}
+
+.messageBlockName {
+    margin-top: 10px;
+}

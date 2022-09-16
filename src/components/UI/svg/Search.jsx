@@ -17,7 +17,15 @@ const Search = ({setSearch,...props}) => {
                         setSearch(input);
                     }
                 }}/>
-            <img src={SearchLogo} height={48} width={48} alt=""/>
+            <img
+                className={classes.svg}
+                onClick={() => {
+                    setSearch(input);
+                }}
+                src={SearchLogo}
+                height={48}
+                width={48}
+                alt=""/>
         </div>
     );
 };

@@ -3,7 +3,6 @@ export function validateUsername(value) {
         return 'Value need to start from letter'
     }
     if(value.length < 2 || value.length > 20) {
-        console.log(value)
         return 'Need 2-20'
     }
     if(value.match('^[a-zA-Z][a-zA-Z0-9]{1,20}')) {

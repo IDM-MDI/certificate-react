@@ -4,8 +4,14 @@ import Text from "../text/Text";
 import Tag from "./Tag";
 
 
-const TagList = ({data,...props}) => {
-    const [listTag,setTags] = useState(<Text fSize={36} color={'pink'}>There are nothing find</Text>)
+const TagList = ({data,reload,...props}) => {
+    const [listTag,setTags] = useState(
+        <div onClick={reload} className={classes.reloadText}>
+            <Text fSize={36} color={'pink'}>
+                There are nothing find, click on me to reload
+            </Text>
+        </div>
+    )
 
     useEffect(()=> {
         getListByData()

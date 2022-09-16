@@ -23,7 +23,7 @@ const TagSlider = ({data,...props}) => {
             {
                 data.content.map((tag) => {
                     return <div className={classes.tagSlider}>
-                        <TopTag data={tag} key={tag.id} />
+                        <TopTag key={tag.id}>{tag}</TopTag>
                     </div>
                 })
             }

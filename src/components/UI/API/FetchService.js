@@ -23,7 +23,6 @@ export async function fetchEntity(url,size = 10,page = 0,sort = 'id',direction =
 }
 
 export async function fetchSearchByName(url,name) {
-    console.log(url + '?name=' + name)
     return await axios.get(url + '?name=' + name)
 }
 
